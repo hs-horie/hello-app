@@ -1,5 +1,6 @@
 package com.example.hello_app
 
+import androidx.compose.runtime.Composable
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -13,5 +14,14 @@ class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
         assertEquals(4, 2 + 2)
+    }
+
+    // 機能としてテストできるものはあんまりないので、assertionの種類をいろいろ試す感じ
+    private val testMainModel = MainModel()
+
+    // 結果がtrueだったら成功するテスト
+    @Test
+    fun test_assertTrue(){
+        assertTrue(testMainModel.isInt(123))
     }
 }
