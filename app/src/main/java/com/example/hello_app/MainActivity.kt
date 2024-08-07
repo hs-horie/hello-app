@@ -2,6 +2,7 @@ package com.example.hello_app
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -16,19 +17,39 @@ import com.example.hello_app.ui.theme.HelloappTheme
 import io.getunleash.android.DefaultUnleash
 import io.getunleash.android.UnleashConfig
 import io.getunleash.android.data.UnleashContext
+import io.getunleash.android.events.UnleashReadyListener
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        initUnleash(applicationContext)
+        val unleash = initUnleash(applicationContext)
+
+
+        unleash.start(
+            eventListeners = listOf(object : UnleashReadyListener {
+                override fun onReady() {
+                    Log.d("DEBUG", "unleash ready")
+                }
+            })
+        )
+
+
         enableEdgeToEdge()
         setContent {
             HelloappTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                    if (unleash.isEnabled("name flag")) {
+                        Greeting(
+                            name = "world",
+                            modifier = Modifier.padding(innerPadding)
+                        )
+                    } else {
+                        Greeting(
+                            name = "android",
+                            modifier = Modifier.padding(innerPadding)
+                        )
+
+                    }
                 }
             }
         }
@@ -51,7 +72,7 @@ fun GreetingPreview() {
     }
 }
 
-fun initUnleash(context: Context){
+fun initUnleash(context: Context): DefaultUnleash {
     val unleash = DefaultUnleash(
         context,
         unleashConfig = UnleashConfig.newBuilder(
@@ -69,4 +90,6 @@ fun initUnleash(context: Context){
         .sessionId("However you resolve your session id")
         .build()
     unleash.setContext(initialContext)
+
+    return unleash
 }
