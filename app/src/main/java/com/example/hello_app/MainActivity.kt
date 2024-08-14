@@ -38,7 +38,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             HelloappTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    if (unleash.isEnabled("name flag")) {
+                    if (unleash.isEnabled("nameFlag")) {
                         Greeting(
                             name = "world",
                             modifier = Modifier.padding(innerPadding)
@@ -78,16 +78,15 @@ fun initUnleash(context: Context): DefaultUnleash {
         unleashConfig = UnleashConfig.newBuilder(
             appName = "hello-app"
         )
-            .proxyUrl("http://todo.後でGCEの方で決めてもらう")
-            .clientKey("<client-side SDK API key> 多分これもGCEの方でセットアップ")
+            .proxyUrl("http://35.226.5.7:4242/") //VM起動のたび外部IPが変わるので、都度書き換える
+            .clientKey("test-unleash-secrets")
             .pollingStrategy.interval(3000) // 3 secs is just for testing purposes, not recommended for production
             .metricsStrategy.interval(3000) // 3 secs is just for testing purposes, not recommended for production
             .build()
     )
 
     val initialContext = UnleashContext.newBuilder()
-        .userId("However you resolve your userid")
-        .sessionId("However you resolve your session id")
+        .userId("admin")
         .build()
     unleash.setContext(initialContext)
 

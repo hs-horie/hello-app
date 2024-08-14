@@ -68,5 +68,5 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     // feature flag oss
-    implementation("io.getunleash:unleash-android:1.0.1")
+    implementation(libs.unleash.android)
 }
