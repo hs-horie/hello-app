@@ -78,7 +78,7 @@ fun initUnleash(context: Context): DefaultUnleash {
         unleashConfig = UnleashConfig.newBuilder(
             appName = "hello-app"
         )
-            .proxyUrl("http://35.226.5.7:4242/") //VM起動のたび外部IPが変わるので、都度書き換える
+            .proxyUrl("http://34.42.90.78:3000/proxy")
             .clientKey("test-unleash-secrets")
             .pollingStrategy.interval(3000) // 3 secs is just for testing purposes, not recommended for production
             .metricsStrategy.interval(3000) // 3 secs is just for testing purposes, not recommended for production
