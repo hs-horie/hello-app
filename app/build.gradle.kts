@@ -54,7 +54,7 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
-    task("jacocoTestReport", JacocoReport::class) {
+    task("coverageReport", JacocoReport::class) {
         dependsOn("testReleaseUnitTest")
         reports {
             xml.required = false
