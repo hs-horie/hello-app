@@ -1,7 +1,12 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    jacoco
 }
+jacoco{
+    toolVersion = "0.8.9"
+}
+
 
 android {
     namespace = "com.example.hello_app"
@@ -27,6 +32,8 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            enableUnitTestCoverage = true
+            enableAndroidTestCoverage = true
         }
     }
     compileOptions {
@@ -47,6 +54,20 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+    task("jacocoTestReport", JacocoReport::class) {
+        dependsOn("testReleaseUnitTest")
+        reports {
+            xml.required = false
+            csv.required = false
+            html.required = true
+        }
+        // projectDir: hello-app/app
+        sourceDirectories.setFrom("${projectDir}/src/main/java")
+        // buildDirectory: hello-app/app/build
+        classDirectories.setFrom("${project.layout.buildDirectory}/tmp/kotlin-classes/release")
+        executionData.setFrom(files("${project.layout.buildDirectory}/jacoco/testReleaseUnitTest.exec"))
+    }
+
 }
 
 dependencies {
