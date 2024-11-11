@@ -1,9 +1,10 @@
-package com.example.hello_app
+package com.example.helloApp
 
 import androidx.compose.runtime.Composable
 import org.junit.Test
 
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 
 /**
  * Example local unit test, which will execute on the development machine (host).

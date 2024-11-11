@@ -1,4 +1,4 @@
-package com.example.hello_app
+package com.example.helloApp
 
 import android.content.Context
 import android.os.Bundle
@@ -13,7 +13,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.hello_app.ui.theme.HelloappTheme
+import com.example.helloApp.ui.theme.HelloappTheme
 import io.getunleash.android.DefaultUnleash
 import io.getunleash.android.UnleashConfig
 import io.getunleash.android.data.UnleashContext
