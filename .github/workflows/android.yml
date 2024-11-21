@@ -30,7 +30,6 @@ jobs:
       with:
         name: results
         path: |
-          **/build/reports/lint-results-*.html
           **/build/reports/lint-results-*.xml
         if-no-files-found: error
         retention-days: 14
