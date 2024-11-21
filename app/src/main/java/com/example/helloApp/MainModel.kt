@@ -1,4 +1,4 @@
-package com.example.hello_app
+package com.example.helloApp
 
 import kotlin.random.Random
 
