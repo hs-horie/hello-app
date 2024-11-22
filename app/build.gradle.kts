@@ -4,10 +4,9 @@ plugins {
     alias(libs.plugins.ktlint)
     jacoco
 }
-jacoco{
+jacoco {
     toolVersion = "0.8.9"
 }
-
 
 android {
     namespace = "com.example.hello_app"
@@ -63,12 +62,11 @@ android {
             html.required = true
         }
         // projectDir: hello-app/app
-        sourceDirectories.setFrom("${projectDir}/src/main/java")
+        sourceDirectories.setFrom("$projectDir/src/main/java")
         // buildDirectory: hello-app/app/build
         classDirectories.setFrom("${project.layout.buildDirectory}/tmp/kotlin-classes/release")
         executionData.setFrom(files("${project.layout.buildDirectory}/jacoco/testReleaseUnitTest.exec"))
     }
-
 }
 
 dependencies {
