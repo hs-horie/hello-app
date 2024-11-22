@@ -1,0 +1,6 @@
+# ここが最上位の設定ファイル
+root = true
+
+# あとは、ファイルの種類ごとに設定を上書き
+[*.{kt,kts}]
+disabled_rules = import-ordering
