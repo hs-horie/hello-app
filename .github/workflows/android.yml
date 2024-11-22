@@ -2,34 +2,34 @@ name: Android CI
 
 # 実行の条件
 on:
-  push:
-    # masterへマージする時
-    branches: [ "master" ]
   pull_request:
-    # masterへのPRを作成した時
-    branches: [ "master" ]
+    paths:
+      - .github/workflows/android.yml
+      - '*/src/**'
 
 jobs:
-  # Android Lintを使って静的解析する
-  lint:
+  android-lint:
     runs-on: ubuntu-latest
     steps:
-    # チェックアウト
-    - uses: actions/checkout@v4
-    # 静的解析
-    - name: Run Inspection
-      run: ./gradlew lint
-    # 結果の表示
-    - uses: yutailang0119/action-android-lint@v1
-      with:
-        xml_path: 'hello-app/build/reports/lint-results.xml'
-    # アーティファクトへアップロード
-    - name: Upload results Artifact
-      uses: actions/upload-artifact@v4
-      if: success() || failure()
-      with:
-        name: results
-        path: |
-          hello-app/build/reports/lint-results.xml
-        if-no-files-found: error
-        retention-days: 14
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: zulu
+          java-version: 21
+          cache: gradle
+      - run: ./gradlew lint
+      - uses: yutailang0119/action-android-lint@v4
+        with:
+          report-path: 'hello-app/app/build/reports/*.xml'
+      # アーティファクトへアップロード
+      - name: Upload results Artifact
+        uses: actions/upload-artifact@v4
+        if: success() || failure()
+        with:
+          name: results
+          path: |
+            hello-app/app/build/reports/*.xml
+          retention-days: 14
