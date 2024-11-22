@@ -1,10 +1,8 @@
 package com.example.helloApp
 
-import androidx.compose.runtime.Composable
-import org.junit.Test
-
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
+import org.junit.Test
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -22,7 +20,7 @@ class ExampleUnitTest {
 
     // 結果がtrueだったら成功するテスト
     @Test
-    fun test_assertTrue(){
+    fun test_assertTrue() {
         assertTrue(testMainModel.isInt(123))
     }
 }
