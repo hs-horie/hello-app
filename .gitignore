@@ -24,3 +24,12 @@ replay_pid*
 
 # Local Files
 local.properties
+
+# Others
+.DS_Store
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
