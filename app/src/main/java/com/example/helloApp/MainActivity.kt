@@ -24,7 +24,6 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         val unleash = initUnleash(applicationContext)
 
-
         unleash.start(
             eventListeners = listOf(object : UnleashReadyListener {
                 override fun onReady() {
@@ -32,7 +31,6 @@ class MainActivity : ComponentActivity() {
                 }
             })
         )
-
 
         enableEdgeToEdge()
         setContent {
@@ -48,7 +46,6 @@ class MainActivity : ComponentActivity() {
                             name = "android",
                             modifier = Modifier.padding(innerPadding)
                         )
-
                     }
                 }
             }
