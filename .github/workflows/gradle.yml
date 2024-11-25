@@ -9,7 +9,7 @@ name: Java CI with Gradle
 
 on:
   pull_request:
-    paths: # テスト用トリガー
+    paths: # テスト用トリガーです
       - .github/workflows/gradle.yml
       - '*/src/**'
 
