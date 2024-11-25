@@ -10,7 +10,7 @@ name: Java CI with Gradle
 on:
   pull_request:
     paths:
-      - .github/workflows/android.yml
+      - .github/workflows/gradle.yml
       - '*/src/**'
 
 jobs:
