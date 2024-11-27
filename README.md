@@ -9,3 +9,5 @@
 * ktlint
   * コードスタイルチェック `./gradlew ktlintCheck`
   * コードの自動フォーマット `./gradlew ktlintFormat`
+* detekt
+  * コードスタイルチェック `./gradlew detekt`
