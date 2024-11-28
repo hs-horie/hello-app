@@ -24,6 +24,15 @@ jobs:
       - uses: yutailang0119/action-android-lint@v4
         with:
           report-path: 'hello-app/app/build/reports/*.xml'
+      - name: Generate lint report
+        run: ./gradlew lint
+      # Lintレポートが生成されるディレクトリを指定
+        working-directory: hello-app/app
+      - name: Upload lint report
+        uses: actions/upload-artifact@v4
+        with:
+          name: lint-reports
+          path: hello-app/app/build/reports/lint
       # アーティファクトへアップロード
       - name: Upload results Artifact
         uses: actions/upload-artifact@v4
