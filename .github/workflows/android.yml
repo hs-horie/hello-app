@@ -22,3 +22,5 @@ jobs:
           cache: gradle
       - run: ./gradlew lint
       - uses: yutailang0119/action-android-lint@v4
+        with:
+          report-path: 'hello-app/app/build/reports/*.xml'
