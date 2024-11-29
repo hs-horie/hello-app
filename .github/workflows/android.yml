@@ -41,13 +41,3 @@ jobs:
       # 静的解析
       - name: Lint with detekt
         run: ./gradlew detekt
-      # アーティファクトへアップロード
-      - name: Upload results Artifact
-        uses: actions/upload-artifact@v4
-        if: failure()
-        with:
-          name: results
-          path: |
-            hello-app/app/build/reports/detekt/detekt.xml
-          if-no-files-found: error
-          retention-days: 14
