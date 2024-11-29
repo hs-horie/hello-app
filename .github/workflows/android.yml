@@ -1,16 +1,24 @@
+# name: このワークフローの名前
 name: Android CI lint demo
 
-# 実行の条件
+# on: 実行の条件
 on:
+  # pull_request: プルリクエストが作成されたときに実行
   pull_request:
+    # paths: 特定のファイルパスに変更があった場合にのみ実行
     paths:
+      # このワークフローファイル自体が変更された場合
       - .github/workflows/android.yml
+      # src ディレクトリ以下に変更があった場合
       - '*/src/**'
 
 jobs:
+  # ジョブの名前
   android-lint:
+    # runs-on: 実行環境の種類
     runs-on: ubuntu-latest
     steps:
+      # リポジトリのコードをワークスペースにチェックアウトする
       - uses: actions/checkout@v4
         with:
           fetch-depth: 1
@@ -20,6 +28,7 @@ jobs:
           distribution: zulu
           java-version: 17
           cache: gradle
+      # Gradle の lint タスクを実行して、コードの静的解析を行います
       - run: ./gradlew lint
       - uses: yutailang0119/action-android-lint@v4
         with:
