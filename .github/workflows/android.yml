@@ -1,0 +1,62 @@
+# name: このワークフローの名前
+name: Android CI lint demo
+
+# on: 実行の条件
+on:
+  # pull_request: プルリクエストが作成されたときに実行
+  pull_request:
+    # paths: 特定のファイルパスに変更があった場合にのみ実行
+    paths:
+      # このワークフローファイル自体が変更された場合
+      - .github/workflows/android.yml
+      # src ディレクトリ以下に変更があった場合
+      - '*/src/**'
+
+jobs:
+  # lint のジョブ
+  lint:
+    # runs-on: 実行環境の種類
+    runs-on: ubuntu-latest
+    steps:
+      # リポジトリのコードをワークスペースにチェックアウトする
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: zulu
+          java-version: 17
+          cache: gradle
+      # Gradle の lint タスクを実行して、コードの静的解析を行います
+      - run: ./gradlew lint
+      - uses: yutailang0119/action-android-lint@v4
+        with:
+          report-path: 'hello-app/app/build/reports/*.xml'
+      # アーティファクトへアップロード
+      - name: Upload results Artifact
+        uses: actions/upload-artifact@v4
+        if: success() || failure()
+        with:
+          name: results
+          path: |
+            **/build/reports/lint-results-*.html
+            **/build/reports/lint-results-*.xml
+          if-no-files-found: error
+          retention-days: 14
+  # # detekt のジョブ
+  # detekt:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #       with:
+  #         fetch-depth: 1
+  #     - name: set up JDK
+  #       uses: actions/setup-java@v4
+  #       with:
+  #         distribution: zulu
+  #         java-version: 17
+  #         cache: gradle
+  #     # detekt を実行して、コードの静的解析を行います
+  #     - name: Lint with detekt
+  #       run: ./gradlew detekt
