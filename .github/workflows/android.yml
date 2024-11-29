@@ -48,6 +48,6 @@ jobs:
         with:
           name: results
           path: |
-            **/build/reports/detekt/*
+            hello-app/app/build/reports/detekt/detekt.xml
           if-no-files-found: error
           retention-days: 14
