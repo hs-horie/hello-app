@@ -1,0 +1,35 @@
+name: Android CI
+
+# 実行の条件
+on:
+  pull_request:
+    paths:
+      - .github/workflows/android.yml
+      - '*/src/**'
+
+jobs:
+  android-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: zulu
+          java-version: 17
+          cache: gradle
+      - run: ./gradlew lint
+      - uses: yutailang0119/action-android-lint@v4
+        with:
+          report-path: 'hello-app/app/build/reports/*.xml'
+      # アーティファクトへアップロード
+      - name: Upload results Artifact
+        uses: actions/upload-artifact@v4
+        if: success() || failure()
+        with:
+          name: results
+          path: |
+            hello-app/app/build/reports/*.xml
+          retention-days: 14
