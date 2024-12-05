@@ -1,0 +1,20 @@
+name: UnitTest
+
+on:
+  push:
+
+jobs:
+  UnitTest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Run UnitTest
+        run: ./gradlew test
