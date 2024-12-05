@@ -8,7 +8,7 @@ on:
     # paths: 特定のファイルパスに変更があった場合に実行
     paths:
       # このワークフローファイル自体が変更された場合
-      - .github/workflows/android.yml
+      - .github/workflows/android-lint.yml
       # src ディレクトリ配下に変更があった場合
       - '*/src/**'
 
