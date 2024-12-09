@@ -5,7 +5,7 @@ on:
     types:
       - closed
     branches:
-      - 'main'
+      - 'feature/github_actions_gcs_rom_upload'
 
 jobs:
   build-and-upload:
@@ -28,6 +28,6 @@ jobs:
     - id: 'upload-file'
       uses: 'google-github-actions/upload-cloud-storage@v2'
       with:
-        path: ''
+        path: 'app/build/outputs/apk/debug/app-debug.apk'
         destination: 'hs-svm-workgroup002.appspot.com/DevOps/ROM'
     
