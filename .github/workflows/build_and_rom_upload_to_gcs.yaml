@@ -1,4 +1,4 @@
-name: Build and Upload to GCS
+name: Build and Upload　ROM to GCS
 
 on:
   pull_request:
