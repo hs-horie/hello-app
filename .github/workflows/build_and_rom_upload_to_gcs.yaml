@@ -5,7 +5,7 @@ on:
     types:
       - closed
     branches:
-      - 'feature/github_actions_gcs_rom_upload'
+      - 'master'
 
 jobs:
   build-and-upload:
