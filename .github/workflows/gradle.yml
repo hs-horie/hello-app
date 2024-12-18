@@ -9,10 +9,13 @@ name: Java CI with Gradle
 
 on:
   workflow_dispatch:
-  pull_request:
-    paths: # テスト用トリガーです
-      - .github/workflows/gradle.yml
-      - '*/src/**'
+  push:
+    branches:
+      - master
+  # pull_request:
+  #   paths: # テスト用トリガーです
+  #     - .github/workflows/gradle.yml
+  #     - '*/src/**'
 
 
 jobs:
